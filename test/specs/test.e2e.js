@@ -6,9 +6,15 @@ describe("ecommerce application", async () => {
     const password = $(`#password`);
     await password.setValue("learnin");
     await $(`#signInBtn`).click();
-    await browser.pause(3000);
-    await console.log(
-      await $(`//div[@class='alert alert-danger col-md-12']`).getText()
+    await browser.waitUntil(
+      async () => (await $("#signInBtn").getAttribute("value")) === "Sign In",
+      {
+        timeout: 10000,
+        timeoutMsg: "error msg is not showing up",
+      }
+    );
+    await expect($(`//p[@class='text-center text-white']`)).toHaveText(
+      "(username is rahulshettyacademy and Password is learning)"
     );
   });
 });
