@@ -15,5 +15,10 @@ describe("UI Controls Check", async () => {
     //and when clicking admin is shouldn't display
     await radioButtons[0].click();
     await expect($(".modal-content")).not.toBeDisplayed();
+
+    //dropdown tst
+    const dropdown = $("select.form-control");
+    await dropdown.selectByAttribute("value", "teach");
+    await browser.pause(3000);
   });
 });
